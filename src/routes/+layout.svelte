@@ -8,6 +8,9 @@
 	let pathname = $derived($page.url.pathname);
 	let questsActive = $derived(pathname === `${base}/` || pathname === base || pathname === '/');
 	let modsActive = $derived(pathname === `${base}/mods` || pathname === `${base}/mods/`);
+	let enhancementsActive = $derived(
+		pathname === `${base}/enhancements` || pathname === `${base}/enhancements/`
+	);
 </script>
 
 <svelte:head>
@@ -20,6 +23,7 @@
 		<div class="tabs">
 			<a class="tab" class:active={questsActive} href="{base}/">Quests</a>
 			<a class="tab" class:active={modsActive} href="{base}/mods">Mods</a>
+			<a class="tab" class:active={enhancementsActive} href="{base}/enhancements">Enhancements</a>
 		</div>
 	</div>
 </nav>

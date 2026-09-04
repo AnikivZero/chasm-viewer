@@ -1,0 +1,63 @@
+[
+	{
+		"stat": "str",
+		"breakpoints": [
+			[100, "steven has to take the SAT"],
+			[200, "steven has to take a suppository"]
+		],
+		"current_progress": 0
+	},
+	{
+		"stat": "dex",
+		"breakpoints": [
+			[40, "Ignore difficult terrain on scree and loose gravel."],
+			[90, "Descend one full ledge without a climb check."],
+			[150, "Act first in any ambush sprung inside the chasm."]
+		],
+		"current_progress": 65
+	},
+	{
+		"stat": "con",
+		"breakpoints": [
+			[50, "Breathe the toxic depths an extra hour before checks."],
+			[120, "Halve the exhaustion gained from a forced descent."],
+			[220, "Immune to the pressure sickness of the lower shelves."]
+		],
+		"current_progress": 120
+	},
+	{
+		"stat": "int",
+		"breakpoints": [
+			[100, "steven has to take the SAT"],
+			[200, "steven has to take a suppository"]
+		],
+		"current_progress": 0
+	},
+	{
+		"stat": "wis",
+		"breakpoints": [
+			[60, "Sense the direction of the nearest open air shaft."],
+			[130, "Read dweller sign left in the dust with no check."],
+			[200, "Wake automatically when anything enters the camp."],
+			[260, "Know your true depth without instruments."]
+		],
+		"current_progress": 145
+	},
+	{
+		"stat": "cha",
+		"breakpoints": [
+			[75, "Parley with dwellers who would otherwise strike first."],
+			[160, "Hire a guide in any depth settlement at half rate."],
+			[240, "One dweller faction owes you a debt you may call in."]
+		],
+		"current_progress": 240
+	},
+	{
+		"stat": "luck",
+		"breakpoints": [
+			[30, "Reroll a single natural 1 each descent."],
+			[80, "Survive one fatal fall; the chasm decides to let you go."]
+		],
+		"current_progress": 12
+	}
+]

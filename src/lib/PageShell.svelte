@@ -1,16 +1,19 @@
 <script>
 	/**
+	 * `layout` controls how cards flow: 'grid' packs them into responsive
+	 * columns, 'rows' gives each card a full-width row of its own.
 	 * @type {{
 	 *   heading: string;
 	 *   tagline: string;
 	 *   loading: boolean;
 	 *   error: string | null;
 	 *   empty: boolean;
+	 *   layout?: 'grid' | 'rows';
 	 *   toolbar?: import('svelte').Snippet;
 	 *   children: import('svelte').Snippet;
 	 * }}
 	 */
-	let { heading, tagline, loading, error, empty, toolbar, children } = $props();
+	let { heading, tagline, loading, error, empty, layout = 'grid', toolbar, children } = $props();
 </script>
 
 <main>
@@ -30,7 +33,7 @@
 	{:else if empty}
 		<p class="status">No matches.</p>
 	{:else}
-		<section class="grid">
+		<section class="grid" class:rows={layout === 'rows'}>
 			{@render children()}
 		</section>
 	{/if}
@@ -79,6 +82,10 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 		gap: 1.25rem;
+	}
+
+	.grid.rows {
+		grid-template-columns: 1fr;
 	}
 
 	/* Base card styles are shared across pages. Card markup is provided by the
