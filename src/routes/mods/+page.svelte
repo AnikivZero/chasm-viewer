@@ -1,13 +1,9 @@
 <script>
-	import { base } from '$app/paths';
-	import { onMount } from 'svelte';
 	import PageShell from '$lib/PageShell.svelte';
+	import { jsonResource } from '$lib/jsonResource.svelte.js';
 
-	/** @type {Array<Record<string, any>>} */
-	let items = $state([]);
-	let loading = $state(true);
-	/** @type {string | null} */
-	let error = $state(null);
+	const data = jsonResource('mods.json');
+	let items = $derived(data.items);
 
 	/** @type {string} */
 	let query = $state('');
@@ -26,17 +22,6 @@
 		});
 	});
 
-	onMount(async () => {
-		try {
-			const res = await fetch(`${base}/mods.json`);
-			if (!res.ok) throw new Error(`Failed to load data (${res.status})`);
-			items = await res.json();
-		} catch (/** @type {any} */ e) {
-			error = e?.message ?? 'Something went wrong loading the data.';
-		} finally {
-			loading = false;
-		}
-	});
 </script>
 
 <svelte:head>
@@ -46,8 +31,8 @@
 <PageShell
 	heading="Mods & Accessories"
 	tagline="Gear up before you descend."
-	{loading}
-	{error}
+	loading={data.loading}
+	error={data.error}
 	empty={filtered.length === 0}
 >
 	{#snippet toolbar()}

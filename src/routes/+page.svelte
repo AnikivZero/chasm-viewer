@@ -1,15 +1,11 @@
 <script>
-	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
 	import PageShell from '$lib/PageShell.svelte';
+	import { jsonResource } from '$lib/jsonResource.svelte.js';
 
-	/** @type {Array<Record<string, any>>} */
-	let items = $state([]);
-	let loading = $state(true);
-	/** @type {string | null} */
-	let error = $state(null);
+	const data = jsonResource('data.json');
+	let items = $derived(data.items);
 
 	/** @type {string} */
 	let query = $state('');
@@ -87,18 +83,6 @@
 		selectedFaction === null ? visibleFactions.length === 0 : factionQuests.length === 0
 	);
 
-	onMount(async () => {
-		try {
-			const res = await fetch(`${base}/data.json`);
-			if (!res.ok) throw new Error(`Failed to load data (${res.status})`);
-			items = await res.json();
-		} catch (/** @type {any} */ e) {
-			error = e?.message ?? 'Something went wrong loading the data.';
-		} finally {
-			loading = false;
-		}
-	});
-
 	/** @param {string} name */
 	function openFaction(name) {
 		query = '';
@@ -170,8 +154,8 @@
 <PageShell
 	heading={selectedFaction ?? 'Factions'}
 	tagline={selectedFaction ? 'Quests aligned with this faction' : 'Choose a faction to view its quests'}
-	{loading}
-	{error}
+	loading={data.loading}
+	error={data.error}
 	empty={isEmpty}
 >
 	{#snippet toolbar()}

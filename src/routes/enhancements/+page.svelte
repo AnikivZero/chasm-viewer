@@ -1,13 +1,9 @@
 <script>
-	import { base } from '$app/paths';
-	import { onMount } from 'svelte';
 	import PageShell from '$lib/PageShell.svelte';
+	import { jsonResource } from '$lib/jsonResource.svelte.js';
 
-	/** @type {Array<Record<string, any>>} */
-	let items = $state([]);
-	let loading = $state(true);
-	/** @type {string | null} */
-	let error = $state(null);
+	const data = jsonResource('enhancements.json');
+	let items = $derived(data.items);
 
 	/**
 	 * A single reward tier: the progress needed, the reward, and whether it is
@@ -45,17 +41,6 @@
 	// Rows render in file order, so the json controls the stat ordering.
 	let enhancements = $derived(items.map(parse));
 
-	onMount(async () => {
-		try {
-			const res = await fetch(`${base}/enhancements.json`);
-			if (!res.ok) throw new Error(`Failed to load data (${res.status})`);
-			items = await res.json();
-		} catch (/** @type {any} */ e) {
-			error = e?.message ?? 'Something went wrong loading the data.';
-		} finally {
-			loading = false;
-		}
-	});
 </script>
 
 <svelte:head>
@@ -65,8 +50,8 @@
 <PageShell
 	heading="Enhancements"
 	tagline="Push a stat past a breakpoint to claim its reward."
-	{loading}
-	{error}
+	loading={data.loading}
+	error={data.error}
 	empty={enhancements.length === 0}
 	layout="rows"
 >
