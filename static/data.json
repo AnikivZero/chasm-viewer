@@ -1,42 +1,98 @@
 [
 	{
 		"id": "1",
-		"faction": "The Delvers' Guild",
-		"planet": "Verdant Reach",
-		"title": "The First Descent",
+		"faction": "The Empire",
+		"planet": "Tessero",
+		"title": "To Kill a Star",
 		"severity": 1,
-		"description": "A quiet beginning at the edge of the chasm. The path down is narrow and the light fades quickly, but the way forward is clear enough for those willing to take the first step."
+		"description": "A city-scape with a centralized castle. The city is split into several districts, the slums, the market, and the higher living. As of the latest report, we've uncovered an operation that the princess is being framed for embezzling money. It seems that they had no real care for the girl. A shame. It seems the major players need to be removed to deal a blow to The Empire's finances. Eliminate the family around the noble girl and win her support for our side."
 	},
 	{
 		"id": "2",
-		"faction": "The Delvers' Guild",
-		"planet": "Kethara Prime",
-		"title": "Echoing Halls",
-		"severity": 3,
-		"description": "Vast underground caverns where every sound returns threefold. Explorers have mapped only a fraction of the interconnected chambers that spread beneath the surface."
+		"faction": "The Empire",
+		"planet": "Paradissimo",
+		"title": "The Darker Side",
+		"severity": 1,
+		"description": "A small moon on the side of Londinium. It seems that the Empire's location to dump those who are deemed unworthy. It might be worth investigating and recruiting people to our cause. I'm sure they're not happy with their situation and will be compliant in overthrowing The Empire, given we can improve their living conditions and meeting their demands. The action seems quiet as if they are complacent with their situation."
 	},
 	{
 		"id": "3",
-		"faction": "The Lumen Order",
-		"planet": "Aurelia",
-		"title": "The Luminous Pools",
-		"severity": 2,
-		"description": "Still waters that glow with a soft blue light, fed by minerals leaching from the rock above. A rare and fragile ecosystem thrives in the dark."
+		"faction": "The Empire",
+		"planet": "Frost Cry",
+		"title": "Cityscape Secrets",
+		"severity": 1,
+		"description": "A large frozen moon on the side of Londinium. The planet seems to hold very small pockets of artificial life. It is advised to find out where the data center is so we can find all of the hidden and archived secrets of The Empire. I'm sure we can find some information that can be used to turn the people who live under The Empire's oppressive rule."
 	},
 	{
 		"id": "4",
-		"faction": "The Ashen Vanguard",
-		"planet": "Drakos IX",
-		"title": "Fractured Bridge",
-		"severity": 5,
-		"description": "An ancient span crossing the deepest part of the divide. Half of it has collapsed into the black below, leaving only a treacherous ledge for the daring."
+		"faction": "The Barbs",
+		"planet": "Sage III",
+		"title": "Inhibiting Nourishment",
+		"severity": 2,
+		"description": "The planet seems to be very cold. Perfect for storing excess food as it seems. We'll need to infiltrate and find a way to inhibit the supplies there. Figure out how they keep the food unspoiled and where it is located."
 	},
 	{
 		"id": "5",
-		"faction": "The Ashen Vanguard",
-		"planet": "The Nadir",
-		"title": "The Silent Depths",
-		"severity": 6,
-		"description": "Where the chasm bottoms out and sound itself seems to disappear. Few have reached this far, and fewer still have documented what they found."
+		"faction": "The Barbs",
+		"planet": "Ku IX",
+		"title": "Clipping Their wings",
+		"severity": 2,
+		"description": "A planet covered in ships as far as the eye can see. It seems that most of their warships come in and out frequently from here. If we can cripple their movement, their ability to wage war and invade will be drastically decrease."
+	},
+	{
+		"id": "6",
+		"faction": "The Barbs",
+		"planet": "Reaper VII",
+		"title": "A New Invetion",
+		"severity": 2,
+		"description": "The planet seems to have constant lightning as far as the eye can see. It is recommended to bring some rain clothes, and prepare for as much combat as possible. I'm detecting a small settlement, but a large number of power readings on the planet as well."
+	},
+	{
+		"id": "7",
+		"faction": "The Raiders",
+		"planet": "Boltbucket",
+		"title": "Taking the Shots",
+		"severity": 1,
+		"description": "This planet seems to be lined with deep craters and trenches. We're detecting a series of magical weapons coming from that location. It might be some kind of storage or forge, or a mix of both. I would advise taking a look into it."
+	},
+	{
+		"id": "8",
+		"faction": "The Raiders",
+		"planet": "Brainiac",
+		"title": "Slicing it in two",
+		"severity": 1,
+		"description": "This planet seems like a major developed cityscape, lots of trees and parks everywhere. From our senses, we can see a lot of small pockets of magic being chanted. See what they know and what they have developed there. It might be a good idea to pose as if you belong."
+	},
+	{
+		"id": "9",
+		"faction": "The Raiders",
+		"planet": "Harbinger",
+		"title": "Suits and Tuxes",
+		"severity": 2,
+		"description": "This planet has a pretty civilized living situation. I wonder why it is so on demand for food and parties. It seems like they're all relatively high end. I'd advise you come appearing rich and capable."
+	},
+	{
+		"id": "10",
+		"faction": "Pacifista",
+		"planet": "Pacifista 1,3,5,8",
+		"title": "A Quietly Bad Life",
+		"severity": 1,
+		"description": "The series of planets have small pockets of dissent. We need to exploit them and bring some important people into our fray. We've brough over the Orcs who live on a nearby planet. I advise that you find anybody who isn't loyal to the quiet and capable of work and fighting."
+	},
+	{
+		"id": "11",
+		"faction": "Pacifista",
+		"planet": "Pacifista 2,4,6,7",
+		"title": "Shatter Their Faith",
+		"severity": 1,
+		"description": "The people on these planets seem to be much more aware of what is going on around the world. I wonder if it's because of the fact that there are much more foreigners that come to visit here. Seems like there's a major factory that can be sabotaged and an opporunity to reveal the current state of the world and why the factory exists. It seems a woman named Quinn will reach out once she is ready. Additionally, we have another instance of a planet populated by Vampires. they set up a whole location extracting human blood for what we suspect illegal distributions. We'll need to see what their next move is before we proceed, but seems there are groups that are forming and becoming more aware of the situation."
+	},
+	{
+		"id": "12",
+		"faction": "Pacifista",
+		"planet": "Pacifista 9,10,11",
+		"title": "My Book is Weird",
+		"severity": 2,
+		"description": "It seems the education is lacking here. They're a bit newer colonies and neglected frequently. I would suggest we get to their younger immigrants and those that live there to see what the world and system truly is. Infiltrate their colleges and let them see what the world truly is. Young minds are definitely easier to mold."
 	}
 ]
