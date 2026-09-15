@@ -135,6 +135,30 @@
 		const labels = ['Trivial', 'Minor', 'Moderate', 'Serious', 'Severe', 'Critical'];
 		return labels[severity - 1] ?? 'Unknown';
 	}
+
+	/**
+	 * Every planet runs the same number of stages, so entries without an explicit
+	 * `max_stage` fall back to this.
+	 */
+	const DEFAULT_MAX_STAGE = 5;
+
+	/**
+	 * Normalize a quest's stage progress into something a bar can render.
+	 * `steps` is one entry per stage so the bar can be drawn as discrete tiles.
+	 * A `max` of 0 means the entry has no stages and the bar is hidden.
+	 * @param {Record<string, any>} item
+	 */
+	function stageOf(item) {
+		const raw = Number(item.max_stage ?? DEFAULT_MAX_STAGE);
+		const max = Math.max(0, Math.floor(Number.isFinite(raw) ? raw : DEFAULT_MAX_STAGE));
+		const current = Math.min(max, Math.max(0, Math.floor(Number(item.current_stage ?? 0)) || 0));
+		return {
+			current,
+			max,
+			complete: max > 0 && current >= max,
+			steps: Array.from({ length: max }, (_, i) => i + 1)
+		};
+	}
 </script>
 
 <svelte:window onkeydown={onKeydown} />
@@ -184,18 +208,41 @@
 		{/each}
 	{:else}
 		{#each factionQuests as item (item.id)}
+			{@const stage = stageOf(item)}
 			<button class="card quest-card" onclick={() => open(item)}>
 				<h2 class="card-title">{item.planet}</h2>
 				<p class="card-quest">{item.title}</p>
 				<span class="severity" data-level={item.severity}>
 					Severity {item.severity} · {severityLabel(item.severity)}
 				</span>
+				{#if stage.max > 0}
+					<span class="stage">
+						<span class="stage-head">
+							<span class="stage-label">Stage</span>
+							<span class="stage-count" class:complete={stage.complete}>
+								{stage.current} / {stage.max}
+							</span>
+						</span>
+						<!-- One tile per stage; the count above carries the same information,
+						     so the bar is a single labelled image. -->
+						<span
+							class="stage-bar"
+							role="img"
+							aria-label="Stage {stage.current} of {stage.max}"
+						>
+							{#each stage.steps as step (step)}
+								<span class="tile" class:active={step <= stage.current}></span>
+							{/each}
+						</span>
+					</span>
+				{/if}
 			</button>
 		{/each}
 	{/if}
 </PageShell>
 
 {#if selected}
+	{@const stage = stageOf(selected)}
 	<div class="overlay" role="dialog" aria-modal="true" aria-label={selected.title}>
 		<!-- Full-screen button behind the panel; clicking it (or pressing Escape) closes the view -->
 		<button class="backdrop" aria-label="Close" onclick={close}></button>
@@ -206,6 +253,21 @@
 			<span class="severity" data-level={selected.severity}>
 				Severity {selected.severity} · {severityLabel(selected.severity)}
 			</span>
+			{#if stage.max > 0}
+				<div class="stage panel-stage">
+					<span class="stage-head">
+						<span class="stage-label">Stage</span>
+						<span class="stage-count" class:complete={stage.complete}>
+							{stage.current} / {stage.max}
+						</span>
+					</span>
+					<span class="stage-bar" role="img" aria-label="Stage {stage.current} of {stage.max}">
+						{#each stage.steps as step (step)}
+							<span class="tile" class:active={step <= stage.current}></span>
+						{/each}
+					</span>
+				</div>
+			{/if}
 			<p class="panel-description">{selected.description}</p>
 		</div>
 	</div>
@@ -320,6 +382,74 @@
 	}
 	.severity[data-level='6'] {
 		color: #ef4444;
+	}
+
+	/* Stage progress: a discrete tile per stage, mirroring the enhancements bar. */
+	.stage {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		width: 100%;
+		margin-top: 0.1rem;
+	}
+
+	.stage-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
+	.stage-label {
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #64748b;
+	}
+
+	.stage-count {
+		font-size: 0.8rem;
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		color: #94a3b8;
+	}
+
+	.stage-count.complete {
+		color: #4ade80;
+	}
+
+	.stage-bar {
+		display: flex;
+		gap: 3px;
+	}
+
+	.tile {
+		flex: 1 1 0;
+		height: 0.6rem;
+		border: 1px solid #1e293b;
+		border-radius: 3px;
+		background: #0b1424;
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			box-shadow 0.15s ease;
+	}
+
+	.tile.active {
+		border-color: #38bdf8;
+		background: #38bdf8;
+		box-shadow: 0 0 12px -2px rgba(56, 189, 248, 0.6);
+	}
+
+	.panel-stage {
+		margin: 0 0 1.5rem;
+		max-width: 420px;
+	}
+
+	.panel-stage .tile {
+		height: 0.9rem;
+		border-radius: 4px;
 	}
 
 	.overlay {
